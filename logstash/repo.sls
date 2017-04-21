@@ -1,15 +1,9 @@
 {%- if grains['os_family'] == 'Debian' %}
-logstash-repo-key:
-  cmd.run:
-    - name: wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add -
-    - unless: apt-key list | grep 'Elasticsearch (Elasticsearch Signing Key)'
-
 logstash-repo:
   pkgrepo.managed:
     - humanname: Logstash Debian Repository
-    - name: deb http://packages.elasticsearch.org/logstash/1.4/debian stable main
-    - require:
-      - cmd: logstash-repo-key
+    - name: deb  https://artifacts.elastic.co/packages/5.x/apt stable main
+    - key_url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
 {%- elif grains['os_family'] == 'RedHat' %}
 logstash-repo-key:
   cmd.run:
