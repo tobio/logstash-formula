@@ -14,7 +14,8 @@ that differ from whats in defaults.yaml
             'pkg': 'logstash',
             'svc': 'logstash',
             'pkgstate': 'latest',
-            'indent': 4
+            'indent': 4,
+            'service_conf_file': '/etc/init.d/logstash'
         },
         'RedHat': {
             'use_upstream_repo': True,
@@ -54,6 +55,11 @@ that differ from whats in defaults.yaml
         }
     }) %}
     {%- do logstash.update(upstream_repo=upstream_repos[logstash.repoversion]) %}
+{%- endif %}
+
+{%- if salt['grains.get']('os_family') == 'Debian'
+       and logstash.repoversion == '5.x' %}
+    {%- do logstash.update(service_conf_file='/etc/logstash/startup.options') %}
 {%- endif %}
 
 {%- macro output_indented(col, string) %}

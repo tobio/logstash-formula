@@ -9,7 +9,7 @@ logstash-repo:
   pkgrepo.managed:
     - humanname: Logstash Repo
     - name: {{logstash.upstream_repo}}
-    - file: /etc/apt/sources.list.d/beats.list
+    - file: /etc/apt/sources.list.d/elastic.list
     - gpgcheck: 1
     - key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
     - require:

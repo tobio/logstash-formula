@@ -8,7 +8,7 @@
 {%- if salt['grains.get']('os_family', None) == "Debian" %}
 change service group in Ubuntu init script:
   file.replace:
-    - name: /etc/init.d/logstash
+    - name: {{ logstash.service_conf_file }}
     - pattern: "LS_GROUP=logstash"
     - repl: "LS_GROUP=adm"
     - watch_in:
