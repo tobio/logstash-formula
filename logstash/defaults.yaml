@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+logstash:
+  pkg: "logstash"
+  javapkg: default-jre-headless
+  svc: "logstash"
+  pkgstate: "latest"
+  indent: 4
+  repoversion: "2.3"
+  configfile: "/etc/logstash/logstash.conf"
+  configdir: "/etc/logstash/"
+  service:
+    name: logstash
