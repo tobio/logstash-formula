@@ -8,7 +8,7 @@ logstash_repo_https_apt_support:
 logstash-repo:
   pkgrepo.managed:
     - humanname: Logstash Repo
-    - name: deb https://packages.elastic.co/logstash/{{logstash.repoversion}}/debian stable main
+    - name: {{logstash.upstream_repo}}
     - file: /etc/apt/sources.list.d/beats.list
     - gpgcheck: 1
     - key_url: https://packages.elastic.co/GPG-KEY-elasticsearch
@@ -26,7 +26,7 @@ logstash-repo-key:
 logstash-repo:
   pkgrepo.managed:
     - humanname: logstash repository for {{logstash.repoversion}}.x packages
-    - baseurl: http://packages.elasticsearch.org/logstash/{{logstash.repoversion}}/centos
+    - baseurl: {{logstash.upstream_repo}}
     - gpgcheck: 1
     - gpgkey: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
     - enabled: 1
